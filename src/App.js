@@ -5,25 +5,27 @@ import Navbar from "./components/Navbar";
 import UserInputs from "./components/UserInputs";
 import Radar from "./components/Radar";
 import Bar from "./components/Bar";
+import { getRadarChartUrl, getBarChartUrl } from "./util/getChartUrl";
 
-export const inputContext = React.createContext([10, 9, 7, 5, 8, 6, 10]);
+export const inputContext = React.createContext({});
 
 function App() {
-  console.log(inputContext);
+  const exampleData = [10, 9, 7, 5, 8, 6, 10];
+  const [dataSet, setDataSet] = useState(exampleData);
   return (
     <div className="App">
-      <inputContext.Provider value={inputContext}>
+      <inputContext.Provider value={{ dataSet, setDataSet }}>
         <Router>
           <Switch>
             <Route path="/Radar">
               <Navbar />
               <UserInputs />
-              <Radar />
+              <Radar getRadarChartUrl={getRadarChartUrl} />
             </Route>
             <Route path="/Bar">
               <Navbar />
               <UserInputs />
-              <Bar />
+              <Bar getBarChartUrl={getBarChartUrl} />
             </Route>
             <Route path="/">
               <Navbar />

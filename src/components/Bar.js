@@ -1,7 +1,10 @@
-import { getBarChartUrl } from "../util/getChartUrl";
-const Bar = () => {
-  const inputData = [10, 9, 7, 5, 8, 6, 10];
-  return <img src={getBarChartUrl(inputData)}></img>;
+import { useContext } from "react";
+import { inputContext } from "../App";
+const Bar = ({ getBarChartUrl }) => {
+  const { dataSet } = useContext(inputContext);
+  const url = getBarChartUrl(dataSet);
+
+  return <img src={url}></img>;
 };
 
 export default Bar;
